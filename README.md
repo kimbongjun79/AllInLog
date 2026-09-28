@@ -18,18 +18,19 @@
 |---|---|
 | W / A / S / D | 이동 |
 | Shift (이동 중 홀드) | 달리기 |
-| Q / E | 좌 / 우 회전 |
-| Space | 사격 |
+| 마우스 드래그 | 좌 / 우 회전 |
+| 마우스 좌클릭 | 사격 |
 | R | 재장전 |
+| Esc | 메뉴화면 |
 
 ## 구현된 시스템
 
 ### 플레이어
-- WASD 이동 + Q/E 고정 각도 회전 방식
+- WASD 이동 + 마우스 회전 방식
 - 걷기/달리기 8방향 Blend Tree 애니메이션 (2D Freeform Directional)
 - Fire Layer 분리(Avatar Mask) + Animation Rigging(Aim IK)로 이동 중에도 안정적인 상체 사격 모션
 - 히트스캔(Raycast) 기반 사격, 연사 제한(Fire Rate)
-- 탄창/예비 탄약 시스템, R키 재장전(4초)
+- 탄창/예비 탄약 시스템, R키 재장전(3초)
 - 사망 시 입력/이동/회전 완전 차단, 총기 드롭(물리 낙하) 연출
 
 ### 몬스터 (Enemy)
@@ -80,16 +81,8 @@ ResultScreen.cs           - 게임오버/클리어 결과 화면
 TitleScreen.cs            - 타이틀 화면 (시작/종료)
 ```
 
-## 남은 작업 (TODO)
-
-- 권총 외 무기 종류 확장
-- 원거리(곡사포) 공격 몬스터, 뛰는 좀비 등 타입 추가
-- 피격 이펙트(붉은 깜빡임)
-- 사운드 (발사/피격/재장전/BGM)
-- 지형지물 메쉬 실제 적용, 벽 Collider 이음새 정리
-- 레이저 조준선 재설계
 
 ## 개발 환경
 
-- Unity (Universal Render Pipeline 여부는 프로젝트 세팅 확인 필요)
-- 3D, Humanoid 애니메이션 리깅
+- Unity(6000.3.23f1)
+- 3D, Humanoid 애니메이션 리깅(https://www.mixamo.com/)
