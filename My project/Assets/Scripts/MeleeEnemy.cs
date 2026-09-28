@@ -3,6 +3,19 @@ using UnityEngine;
 // 근접 공격 몬스터: 전방 히트박스 활성화 방식
 public class MeleeEnemy : EnemyBase
 {
+    [Header("사운드")]
+    [Tooltip("몬스터 효과음")]
+    [SerializeField] private AudioClip monsterSound;
+
+    [Tooltip("몬스터 공격 사운드")]
+    [SerializeField] private AudioClip monsterAttackSound;
+
+    [Tooltip("몬스터 피격 사운드")]
+    [SerializeField] private AudioClip monsterHitSound;
+
+    [Tooltip("몬스터 사망 사운드")]
+    [SerializeField] private AudioClip monsterDeathSound;
+
     [Header("공격 타이밍")]
     [Tooltip("공격 시작 후 히트박스가 켜지기까지 대기 시간")]
     [SerializeField] private float attackDelay = 0.2f;
@@ -22,6 +35,8 @@ public class MeleeEnemy : EnemyBase
     {
         base.Awake();
 
+        AudioManager.Instance?.PlaySFX(monsterAttackSound);
+
         if (attackHitbox != null)
         {
             attackHitbox.SetActive(false);
@@ -40,6 +55,8 @@ public class MeleeEnemy : EnemyBase
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
         agent.ResetPath();
+
+        AudioManager.Instance?.PlaySFX(monsterSound);
 
         yield return new WaitForSeconds(attackDelay);
 
@@ -63,6 +80,7 @@ public class MeleeEnemy : EnemyBase
         if (attackHitbox != null)
             attackHitbox.SetActive(false);
 
+        AudioManager.Instance?.PlaySFX(monsterDeathSound);
         base.HandleDeath();
     }
 }

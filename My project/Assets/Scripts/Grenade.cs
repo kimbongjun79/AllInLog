@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Grenade : MonoBehaviour
 {
+    [Tooltip("폭발 효과음")]
+    [SerializeField] private AudioClip explosionSound;
+
     [Tooltip("던져진 후 폭발까지 대기 시간 (초)")]
     [SerializeField] private float fuseTime = 3f;
 
@@ -54,7 +57,9 @@ public class Grenade : MonoBehaviour
 
         if (explosionEffectPrefab != null)
             Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
-
+        
+        AudioManager.Instance?.PlaySFX(explosionSound);
+        
         Destroy(gameObject);
     }
 

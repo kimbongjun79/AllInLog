@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    [Header("사운드")]
+    [Tooltip("인게임 BGM")]
+    [SerializeField] private AudioClip gameplayBGM;
 
     [Tooltip("클리어까지 버텨야 하는 시간 (초). 기본 10분")]
     [SerializeField] private float surviveTime = 600f;
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        AudioManager.Instance?.PlayBGM(gameplayBGM);
     }
 
     private void Update()

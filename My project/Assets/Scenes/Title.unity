@@ -739,6 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TitleScreen
   gameplaySceneName: Gameplay
+  titleBGM: {fileID: 8300000, guid: 84ca48a1282e1c844a64fa4451b0804a, type: 3}
 --- !u!1 &1441849352
 GameObject:
   m_ObjectHideFlags: 0
