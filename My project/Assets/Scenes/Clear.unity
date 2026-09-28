@@ -880,6 +880,7 @@ MonoBehaviour:
   survivedTimeText: {fileID: 1114953436}
   killCountText: {fileID: 1625141921}
   titleSceneName: Title
+  resultBGM: {fileID: 8300000, guid: 915c396b857d8b34c932e281762921a7, type: 3}
 --- !u!1 &1621400251
 GameObject:
   m_ObjectHideFlags: 0

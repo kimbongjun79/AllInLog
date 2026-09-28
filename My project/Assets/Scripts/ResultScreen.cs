@@ -13,11 +13,15 @@ public class ResultScreen : MonoBehaviour
 
     [Tooltip("타이틀로 돌아가는 씬 이름")]
     [SerializeField] private string titleSceneName = "Title";
-
+    [Header("사운드")]
+    [Tooltip("이 결과 화면에서 재생할 BGM")]
+    [SerializeField] private AudioClip resultBGM;
     private void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        AudioManager.Instance?.PlayBGM(resultBGM);
 
         float survivedTime = PlayerPrefs.GetFloat("LastSurvivedTime", 0f);
         int killCount = PlayerPrefs.GetInt("LastKillCount", 0);

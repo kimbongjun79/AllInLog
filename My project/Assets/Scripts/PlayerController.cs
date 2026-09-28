@@ -29,6 +29,26 @@ public class PlayerController : MonoBehaviour
     [Tooltip("재장전 완료음")]
     [SerializeField] private AudioClip reloadEndSound;
 
+    [Tooltip("수류탄 투척 효과음 (핀 뽑는 소리)")]
+    [SerializeField] private AudioClip grenadeThrowSound;
+    [Tooltip("플레이어 피격 효과음")]
+    [SerializeField] private AudioClip hitSound;
+
+    [Tooltip("발소리 효과음 (1스텝)")]
+    [SerializeField] private AudioClip footstepSound;
+
+    [Tooltip("걷기 발소리 간격 (초)")]
+    [SerializeField] private float walkFootstepInterval = 0.5f;
+
+    [Tooltip("달리기 발소리 간격 (초)")]
+    [SerializeField] private float runFootstepInterval = 0.3f;
+
+    [Tooltip("발소리 볼륨")]
+    [SerializeField] private float footstepVolume = 0.6f;
+
+    private float footstepTimer;
+
+
     [Tooltip("체력 관리 컴포넌트")]
     [SerializeField] private HealthSystemForDummies health;
 
@@ -264,6 +284,19 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("MoveZ", moveInput.z, 0.1f, Time.deltaTime);
         animator.SetBool("IsRunning", isRunning);
 
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                AudioManager.Instance?.PlaySFX(footstepSound, footstepVolume);
+                footstepTimer = isRunning ? runFootstepInterval : walkFootstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
         if (health.CurrentHealth < previousHP)
             animator.SetTrigger("Hit");
         previousHP = health.CurrentHealth;
@@ -276,6 +309,8 @@ public class PlayerController : MonoBehaviour
             grenadeCount--;
             nextGrenadeTime = Time.time + grenadeCooldown;
             animator.SetTrigger("ThrowGrenade");
+
+            AudioManager.Instance?.PlaySFX(grenadeThrowSound);
 
             if (laserSight != null)
                 laserSight.enabled = false;

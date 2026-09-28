@@ -80,6 +80,10 @@ MonoBehaviour:
   cooldownTimer: 0
   isAttacking: 0
   destroyDelay: 5
+  monsterSound: {fileID: 8300000, guid: 50aead3271afa5e4694033ee06a00c85, type: 3}
+  monsterAttackSound: {fileID: 8300000, guid: 9ca404fc5a084204a9673e7cb2acedda, type: 3}
+  monsterHitSound: {fileID: 8300000, guid: c88a1a063c3e4ae42b68dfd09327e395, type: 3}
+  monsterDeathSound: {fileID: 8300000, guid: b264ae3efa51d714cb8b6725a70f2744, type: 3}
   attackDelay: 1.25
   hitboxActiveDuration: 1
   postAttackDelay: 1.5
